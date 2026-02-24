@@ -95,7 +95,7 @@ close.TextSize = 16
 close.TextColor3 = Color3.new(1,1,1)
 close.BackgroundColor3 = Color3.fromRGB(200, 60, 60)
 close.ZIndex = 5
-Instance.new("UICorner", close).CornerRadius = UDim.new(1, 0)
+Instance.new("UICorner", close).CornerRadius = UDim.new(0, 8)
 
 close.MouseButton1Click:Connect(function()
 	_G.Active = false
