@@ -185,6 +185,15 @@ valueLabel.Font = Enum.Font.GothamBold
 valueLabel.TextSize = 14
 valueLabel.TextColor3 = Color3.fromRGB(230,230,230)
 valueLabel.BackgroundTransparency = 1
+-- COIN COUNTER UI
+local coinLabel = Instance.new("TextLabel", main)
+coinLabel.Size = UDim2.new(1, 0, 0, 30)
+coinLabel.Position = UDim2.new(0, 0, 0, 265)
+coinLabel.Text = "Coins: 0 / "..maxCoins
+coinLabel.Font = Enum.Font.GothamBold
+coinLabel.TextSize = 16
+coinLabel.TextColor3 = Color3.fromRGB(255, 215, 100)
+coinLabel.BackgroundTransparency = 1
 
 -- OSTRZEŻENIE (Na samym dole)
 local warning = Instance.new("TextLabel", main)
