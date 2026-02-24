@@ -14,7 +14,7 @@ _G.AutoReset = true
 
 local speed = 20
 local minSpeed = 1
-local maxSpeed = 28
+local maxSpeed = 30
 local maxCoins = 50 
 local coinCount = 0
 local ignored = {}
@@ -33,18 +33,17 @@ sg.ResetOnSpawn = false
 
 -- MAIN FRAME
 local main = Instance.new("Frame")
-main.Parent = sg 
+main.Parent = sg
 main.Size = UDim2.new(0, 270, 0, 320)
 main.Position = UDim2.new(0.5, -135, 0.5, -160)
-main.BackgroundColor3 = Color3.fromRGB(0,0,0)
+main.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
 main.Active = true
 main.ClipsDescendants = true
-
-main.BackgroundTransparency = 0.3
+Instance.new("UICorner", main).CornerRadius = UDim.new(0, 18)
 
 -- STROKE
 local stroke = Instance.new("UIStroke", main)
-stroke.Thickness = 3
+stroke.Thickness = 2
 stroke.Color = Color3.fromRGB(120, 120, 255)
 
 -- HEADER (Obszar przesuwania)
@@ -90,12 +89,12 @@ local close = Instance.new("TextButton", main)
 close.Size = UDim2.new(0, 30, 0, 30)
 close.Position = UDim2.new(1, -40, 0, 10)
 close.Text = "X"
-close.Font = Enum.Font.FredokaOne
+close.Font = Enum.Font.GothamBold
 close.TextSize = 16
 close.TextColor3 = Color3.new(1,1,1)
 close.BackgroundColor3 = Color3.fromRGB(200, 60, 60)
 close.ZIndex = 5
-Instance.new("UICorner", close).CornerRadius = UDim.new(0, 8)
+Instance.new("UICorner", close).CornerRadius = UDim.new(1, 0)
 
 close.MouseButton1Click:Connect(function()
 	_G.Active = false
@@ -185,21 +184,12 @@ valueLabel.Font = Enum.Font.GothamBold
 valueLabel.TextSize = 14
 valueLabel.TextColor3 = Color3.fromRGB(230,230,230)
 valueLabel.BackgroundTransparency = 1
--- COIN COUNTER UI
-local coinLabel = Instance.new("TextLabel", main)
-coinLabel.Size = UDim2.new(1, 0, 0, 30)
-coinLabel.Position = UDim2.new(0, 0, 0, 265)
-coinLabel.Text = "Coins: 0 / "..maxCoins
-coinLabel.Font = Enum.Font.GothamBold
-coinLabel.TextSize = 16
-coinLabel.TextColor3 = Color3.fromRGB(255, 215, 100)
-coinLabel.BackgroundTransparency = 1
 
 -- OSTRZEŻENIE (Na samym dole)
 local warning = Instance.new("TextLabel", main)
 warning.Size = UDim2.new(1, -40, 0, 40)
 warning.Position = UDim2.new(0, 20, 1, -45)
-warning.Text = "I do not recommend setting it higher than 22. Anti-cheat may kick you out of the game."
+warning.Text = "I do not recommend setting it higher than 25. Anti-cheat may kick you out of the game."
 warning.Font = Enum.Font.Gotham
 warning.TextSize = 11
 warning.TextColor3 = Color3.fromRGB(255, 100, 100)
@@ -290,13 +280,13 @@ task.spawn(function()
 
 				if target then
 					if isFirstCoin then
-						root.CFrame = target.CFrame * CFrame.new(0, 2.7, 0)
+						root.CFrame = target.CFrame * CFrame.new(0, 3, 0)
 						isFirstCoin = false
-						task.wait(0.03)
+						task.wait(0.1)
 					else
-						local tween = TweenService:Create(root, TweenInfo.new(dist/speed, Enum.EasingStyle.Linear), {CFrame = target.CFrame * CFrame.new(0,2.7,0)})
+						local tween = TweenService:Create(root, TweenInfo.new(dist/speed, Enum.EasingStyle.Linear), {CFrame = target.CFrame * CFrame.new(0,3,0)})
 						tween:Play()
-						while _G.Active and target.Parent and not isFirstCoin and (root.Position - target.Position).Magnitude > 2.5 do
+						while _G.Active and target.Parent and not isFirstCoin and (root.Position - target.Position).Magnitude > 2 do
 							task.wait()
 						end
 						tween:Cancel()
@@ -304,10 +294,10 @@ task.spawn(function()
 					ignored[target] = true
 				else
 					ignored = {}
-					task.wait(0.03)
+					task.wait(0.1)
 				end
 			end
 		end
 		task.wait()
 	end
-end) 
+end)
