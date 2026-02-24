@@ -33,7 +33,7 @@ sg.ResetOnSpawn = false
 
 -- MAIN FRAME
 local main = Instance.new("Frame")
-main.Parent = sg
+main.Parent = sg 
 main.Size = UDim2.new(0, 270, 0, 320)
 main.Position = UDim2.new(0.5, -135, 0.5, -160)
 main.BackgroundColor3 = Color3.fromRGB(0,0,0)
@@ -283,11 +283,11 @@ task.spawn(function()
 					if isFirstCoin then
 						root.CFrame = target.CFrame * CFrame.new(0, 3, 0)
 						isFirstCoin = false
-						task.wait(0.1)
+						task.wait(0.03)
 					else
-						local tween = TweenService:Create(root, TweenInfo.new(dist/speed, Enum.EasingStyle.Linear), {CFrame = target.CFrame * CFrame.new(0,3,0)})
+						local tween = TweenService:Create(root, TweenInfo.new(dist/speed, Enum.EasingStyle.Linear), {CFrame = target.CFrame * CFrame.new(0,2.5,0)})
 						tween:Play()
-						while _G.Active and target.Parent and not isFirstCoin and (root.Position - target.Position).Magnitude > 2.5 do
+						while _G.Active and target.Parent and not isFirstCoin and (root.Position - target.Position).Magnitude > 2 do
 							task.wait()
 						end
 						tween:Cancel()
@@ -295,7 +295,7 @@ task.spawn(function()
 					ignored[target] = true
 				else
 					ignored = {}
-					task.wait(0.1)
+					task.wait(0.03)
 				end
 			end
 		end
