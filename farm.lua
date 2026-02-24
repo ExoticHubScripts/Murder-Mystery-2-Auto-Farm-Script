@@ -39,7 +39,8 @@ main.Position = UDim2.new(0.5, -135, 0.5, -160)
 main.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
 main.Active = true
 main.ClipsDescendants = true
-Instance.new("UICorner", main).CornerRadius = UDim.new(0, 18)
+Instance.new("UICorner", main).CornerRadius = UDim.new(0, 0)
+main.BackgroundTransparency = 0.3
 
 -- STROKE
 local stroke = Instance.new("UIStroke", main)
@@ -89,7 +90,7 @@ local close = Instance.new("TextButton", main)
 close.Size = UDim2.new(0, 30, 0, 30)
 close.Position = UDim2.new(1, -40, 0, 10)
 close.Text = "X"
-close.Font = Enum.Font.GothamBold
+close.Font = Enum.Font.FredokaOne
 close.TextSize = 16
 close.TextColor3 = Color3.new(1,1,1)
 close.BackgroundColor3 = Color3.fromRGB(200, 60, 60)
