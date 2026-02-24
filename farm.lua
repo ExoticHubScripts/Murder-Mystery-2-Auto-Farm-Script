@@ -13,7 +13,7 @@ _G.Running = true
 _G.AutoReset = true
 
 local speed = 20
-local minSpeed = 10
+local minSpeed = 5
 local maxSpeed = 30
 local maxCoins = 50 
 local coinCount = 0
@@ -260,7 +260,7 @@ task.spawn(function()
 					player.Character.Humanoid.Health = 0
 				end
 				player.CharacterAdded:Wait()
-				task.wait(1)
+				task.wait(0.3)
 				isFirstCoin = true
 				_G.Active = true
 			end
@@ -281,11 +281,11 @@ task.spawn(function()
 
 				if target then
 					if isFirstCoin then
-						root.CFrame = target.CFrame * CFrame.new(0, 2.7, 0)
+						root.CFrame = target.CFrame * CFrame.new(0, 3, 0)
 						isFirstCoin = false
-						task.wait(0.03)
+						task.wait(0.1)
 					else
-						local tween = TweenService:Create(root, TweenInfo.new(dist/speed, Enum.EasingStyle.Linear), {CFrame = target.CFrame * CFrame.new(0,2.7,0)})
+						local tween = TweenService:Create(root, TweenInfo.new(dist/speed, Enum.EasingStyle.Linear), {CFrame = target.CFrame * CFrame.new(0,3,0)})
 						tween:Play()
 						while _G.Active and target.Parent and not isFirstCoin and (root.Position - target.Position).Magnitude > 2.5 do
 							task.wait()
@@ -295,7 +295,7 @@ task.spawn(function()
 					ignored[target] = true
 				else
 					ignored = {}
-					task.wait(0.03)
+					task.wait(0.1)
 				end
 			end
 		end
